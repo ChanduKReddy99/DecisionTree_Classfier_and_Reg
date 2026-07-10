@@ -7,8 +7,6 @@ from sklearn.base import BaseEstimator
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV, train_test_split
 
 
-DATA_DIR = Path(__file__).resolve().parent / "data"
-
 DEFAULT_PARAM_DISTRIBUTIONS = {
     "max_depth": list(range(3, 7)),
     "min_samples_split": list(range(2, 11)),
@@ -17,7 +15,12 @@ DEFAULT_PARAM_DISTRIBUTIONS = {
 
 
 def load_dataset(filename: str) -> pd.DataFrame:
-    return pd.read_csv(DATA_DIR / filename)
+    for directory in (Path.cwd(), *Path.cwd().parents):
+        dataset_path = directory / "data" / filename
+        if dataset_path.is_file():
+            return pd.read_csv(dataset_path)
+
+    raise FileNotFoundError(f"Could not find data/{filename} from {Path.cwd()}")
 
 
 def split_train_test(

@@ -5,4 +5,5 @@ echo [$(date)]: "Activate python virtual environment"
 source activate ./venv
 echo [$(date)]: "Install project requirements "
 pip install -r requirements.txt
+pip install .
 echo [$(date)]: "END"

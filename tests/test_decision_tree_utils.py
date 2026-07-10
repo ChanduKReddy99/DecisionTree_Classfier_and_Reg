@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 import pandas as pd
@@ -16,7 +17,10 @@ from decision_tree_utils import (
 
 class DecisionTreeUtilsTest(unittest.TestCase):
     def test_load_dataset_uses_project_data_directory(self):
-        iris = load_dataset("iris.csv")
+        notebook_directory = Path(__file__).resolve().parents[1] / "Hyper-Param-Tuning"
+
+        with patch("decision_tree_utils.Path.cwd", return_value=notebook_directory):
+            iris = load_dataset("iris.csv")
 
         self.assertEqual(iris.shape, (150, 5))
         self.assertIn("species", iris.columns)
