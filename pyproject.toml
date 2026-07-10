@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "--cov=decision_tree_models",
+    "--cov-report=term-missing",
+    "--cov-fail-under=90",
+]
