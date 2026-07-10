@@ -1,8 +1,11 @@
+set -e
+
 echo [$(date)]:   "START"
 echo [$(date)]:  "Install python virtual environment"
-conda create --prefix ./venv python=3.11 -y
+python -m venv ./venv
 echo [$(date)]: "Activate python virtual environment"
-source activate ./venv
+source ./venv/bin/activate
 echo [$(date)]: "Install project requirements "
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+python -m pip install .
 echo [$(date)]: "END"
