@@ -1,6 +1,6 @@
-pandas
-seaborn
-matplotlib
-scikit-learn
-imblearn
-ydata-profiling
+pandas==2.2.3
+seaborn==0.13.2
+matplotlib==3.9.2
+scikit-learn==1.5.2
+imbalanced-learn==0.12.4
+ydata-profiling==4.10.0
